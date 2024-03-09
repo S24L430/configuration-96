@@ -7,11 +7,11 @@ data:
     rules:
       - name: block-curl
         when:
-          all0f:
+          allOf:
             - reqProperty: path
               equals: /us/en/faq.html
             - reqHeader: user-agent
-              matches: '.*curl.*
+              matches: '.*curl.*'
             action:
               type: block
       - name: block-xss
