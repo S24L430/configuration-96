@@ -43,5 +43,5 @@ data:
           window: 10
           penalty: 60
           groupBy:
-#             - reqProperty: clientIp
-#         action: block
+            - reqProperty: clientIp
+        action: block
