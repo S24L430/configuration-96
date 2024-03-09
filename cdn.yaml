@@ -4,17 +4,7 @@ metadata:
   envTypes: ["dev"]
 data:
   trafficFilters:
-    rules:
- - name: "block-curl"
-  when:
-    allOf:
-      - reqProperty: path
-        equals: /us/en/faqs.html
-      - reqHeader: user-agent
-        matches: '.*curl.*'
-  action:
-    type: block
- 
+    rules: 
       - name: block-xss
         when:
           reqProperty: tier
@@ -44,14 +34,14 @@ data:
               matches: ".*Chrome.*"
         action:
           type: block
-      # - name: limit-requests-client-ip
-      #   when:
-      #     reqProperty: tier
-      #     equals: "publish"
-      #   rateLimit:
-      #     limit: 60
-      #     window: 10
-      #     penalty: 60
-      #     groupBy:
-      #       - reqProperty: clientIp
-      #   action: block
+      - name: limit-requests-client-ip
+        when:
+          reqProperty: tier
+          equals: "publish"
+        rateLimit:
+          limit: 60
+          window: 10
+          penalty: 60
+          groupBy:
+            - reqProperty: clientIp
+        action: block
