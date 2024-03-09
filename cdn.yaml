@@ -5,6 +5,15 @@ metadata:
 data:
   trafficFilters:
     rules:
+      - name: block-curl
+        when:
+          all0f:
+            - reqProperty: path
+              equals: /us/en/faq.html
+            - reqHeader: user-agent
+              matches: '.*curl.*
+            action:
+              type: block
       - name: block-xss
         when:
           reqProperty: tier
